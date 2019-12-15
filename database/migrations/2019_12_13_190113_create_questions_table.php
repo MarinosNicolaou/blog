@@ -15,6 +15,7 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title');
              //Slug is basicallt the title and basically it is to constructed and make pretty URL
              $table->string('slug')->unique();
              $table->text('body');
