@@ -15,7 +15,7 @@ class QuestionsController extends Controller
     public function index()
     {
         //show the latest 5 questions per page
-        $questions = Question::latest()->paginate(5);
+        $questions = Question::with('user')->latest()->paginate(5);
 
         return view('questions.index', compact('questions'));
 
@@ -28,7 +28,8 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        //
+        $question = new Question();
+        return view('questions.create', compact('question'));
     }
 
     /**
