@@ -38,4 +38,18 @@ class Question extends Model
     public function getCreatedDateAttribute(){
         return $this->created_at->format("d/m/Y");
     }
+
+    /**
+     * check the status of eaach question
+     */
+    public function getStatusAttribute()
+    {
+        if ($this->answers > 0) {
+            if ($this->best_answer_id) {
+                return "answered-accepted";
+            }
+            return "answered";
+        }
+        return "unanswered";
+    }
 }
