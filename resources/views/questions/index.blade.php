@@ -16,6 +16,7 @@
                 </div>
 
                 <div class="card-body">
+                    @include ('layouts._messages')
                    @foreach ($questions as $question)
                         <div class="media">
                             <div class="d-flex flex-column counters">
@@ -29,6 +30,7 @@
                                     {{ $question->views . " " . str_plural('view', $question->views) }}
                                 </div>                            
                             </div>
+
                             <div class="media-body">
                                 <h3 class="mt-0">
                                 <a href="{{ $question->url }}">{{ $question->title }}
