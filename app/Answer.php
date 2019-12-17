@@ -28,4 +28,12 @@ class Answer extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+     /**
+     * This to created date of creation
+     * for a answers
+     */
+    public function getCreatedDateAttribute(){
+        return $this->created_at->format("d/m/Y");
+    }
 }
