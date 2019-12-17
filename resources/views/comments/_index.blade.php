@@ -67,7 +67,7 @@
                                 class="vote-up {{ Auth::guest() ? 'off' : '' }}"
                                 onclick="event.preventDefault(); document.getElementById('up-vote-answer-{{ $answer->id }}').submit();"
                                 >
-                                <i class="fas fa-caret-up fa-3x"></i>
+                                <i class="fas fa-thumbs-up fa-3x"></i>
                             </a>
                             <form id="up-vote-answer-{{ $answer->id }}" action="/answers/{{ $answer->id }}/vote" method="POST" style="display:none;">
                                 @csrf
@@ -80,7 +80,7 @@
                                 class="vote-down {{ Auth::guest() ? 'off' : '' }}"
                                 onclick="event.preventDefault(); document.getElementById('down-vote-answer-{{ $answer->id }}').submit();"
                                 >
-                                <i class="fas fa-caret-down fa-3x"></i>
+                                <i class="fas fa-thumbs-down fa-3x"></i>
                             </a>
                             <form id="down-vote-answer-{{ $answer->id }}" action="/answers/{{ $answer->id }}/vote" method="POST" style="display:none;">
                                 @csrf
