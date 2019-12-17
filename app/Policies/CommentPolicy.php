@@ -11,6 +11,15 @@ class CommentPolicy
     use HandlesAuthorization;
 
     /**
+     * authorize only the user that has created the post
+     * to chosse the best comment
+     */
+    public function accept(User $user, Comment $comment)
+    {
+        return $user->id === $comment->post->user_id;
+    }
+
+    /**
      * Determine whether the user can update the comment.
      *
      * @param  \App\User  $user

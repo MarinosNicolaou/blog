@@ -47,9 +47,25 @@ class Comment extends Model
         return $this->created_at->format("d/m/Y");
     }
 
+    /**
+     * gives the status for the best comment
+     */
     public function getStatusAttribute()
     {
-        return $this->id === $this->post->best_comment_id ? 'like-accepted' : '';
+        return $this->isBest() ? 'like-accepted' : '';  
+    }
+
+    /**
+     * gives the best comment
+     */
+    public function getIsBestAttribute()
+    {
+        return $this->isBest();
+    }
+
+    public function isBest()
+    {
+        return $this->id === $this->post->best_comment_id;
     }
     
 }

@@ -29,3 +29,6 @@ Route::get('/posts/{slug}', 'PostsController@show')->name('posts.show');
 
 //handles comments creation
 Route::resource('posts.comments', 'CommentsController')->except(['index', 'create', 'show']);
+
+//
+Route::post('/comments/{comment}/comment', 'AcceptCommentController')->name('comments.comment'); 

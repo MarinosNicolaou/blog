@@ -63,5 +63,15 @@ class Post extends Model
         return \Parsedown::instance()->text($this->body);
     }
 
+    /**
+     * call and finds the best comment id
+     * 
+     */
+    public function acceptBestComment(Comment $comment)
+    {
+        $this->best_comment_id = $comment->id;
+        $this->save();
+    }
+
     
 }

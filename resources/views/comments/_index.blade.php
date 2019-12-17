@@ -17,9 +17,27 @@
                                 <a title="Comment is not useful" class="vote-down off">
                                     <i class="fas fa-thumbs-down fa-3x"></i>
                                 </a>
-                                <a title="Comment is the best" class="{{ $comment->status }} mt-2">
+                                
+                                @can ('accept', $comment)
+                                <a title="The comment as best comment" 
+                                    class="{{ $comment->status }} mt-2"
+                                    onclick="event.preventDefault(); document.getElementById('accept-comment-{{ $comment->id }}').submit();"
+                                    >
                                     <i class="fas fa-check fa-2x"></i>                                    
                                 </a>
+                                <form id="accept-comment-{{ $comment->id }}" action="{{ route('comments.accept', $comment->id) }}" method="POST" style="display:none;">
+                                    @csrf
+                                </form>
+                            @else
+                                @if ($comment->is_best)
+                                    <a title="The comment owner accepted this comment as best comment" 
+                                        class="{{ $comment->status }} mt-2"                                        
+                                        >
+                                        <i class="fas fa-check fa-2x"></i>                                    
+                                    </a>
+                                @endif
+                            @endcan
+                            
                             </div>
                             <div class="media-body">
                                 {!! $comment->body_html !!}
