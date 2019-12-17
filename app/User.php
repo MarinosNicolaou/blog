@@ -65,4 +65,82 @@ class User extends Authenticatable
         $size = 40;
         return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?s=" . $size;
     }
+
+    /**
+     * This function is for the many to many relationships
+     * So a user can has many favourites questions
+     * And a question can been favourited by many users
+     */
+    public function favorites()
+    {
+        return $this->belongsToMany(Question::class, 'favorites')->withTimestamps();
+    }
+
+    /**
+     * This function is for a polymorfic relationship
+     */
+    public function voteQuestions()
+    {
+        return $this->morphedByMany(Question::class, 'votable');
+    }
+
+    /**
+     * This function is for a polymorfic relationship
+     */
+    public function voteAnswers()
+    {
+        return $this->morphedByMany(Answer::class, 'votable');
+    }
+
+    /**
+     * is this function the user vote a question
+     * and then we recount the total number of votes 
+     * and  we updated them 
+     */
+    public function voteQuestion(Question $question, $vote)
+    {
+        $voteQuestions = $this->voteQuestions();
+        if ($voteQuestions->where('votable_id', $question->id)->exists()) {
+            $voteQuestions->updateExistingPivot($question, ['vote' => $vote]);
+        }
+        else {
+            $voteQuestions->attach($question, ['vote' => $vote]);
+        }
+        //refresh the vote relationship
+        $question->load('votes');
+        //sum the negative votes
+        $downVotes = (int) $question->downVotes()->sum('vote');
+        //sum the positive votes
+        $upVotes = (int) $question->upVotes()->sum('vote');
+        //find the votes numbers
+        $question->votes_count = $upVotes + $downVotes;
+        //save to the database and uplaod
+        $question->save();
+    }
+
+    /**
+     * is this function the user vote an answer
+     * and then we recount the total number of votes 
+     * and  we updated them 
+     */
+    public function voteAnswer(Answer $answer, $vote)
+    {
+        $voteAnswers = $this->voteAnswers();
+        if ($voteAnswers->where('votable_id', $answer->id)->exists()) {
+            $voteAnswers->updateExistingPivot($answer, ['vote' => $vote]);
+        }
+        else {
+            $voteAnswers->attach($answer, ['vote' => $vote]);
+        }
+        //refresh the vote relationship
+        $answer->load('votes');
+        //sum the negative votes
+        $downVotes = (int) $answer->downVotes()->sum('vote');
+        //sum the positive votes
+        $upVotes = (int) $answer->upVotes()->sum('vote');
+        //find the votes numbers
+        $answer->votes_count = $upVotes + $downVotes;
+        //save to the database and uplaod
+        $answer->save();
+    }    
 }

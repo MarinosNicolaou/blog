@@ -47,9 +47,46 @@ class Answer extends Model
         return $this->created_at->format("d/m/Y");
     }
 
+    /**
+     * give the status for the best annswer if
+     * it is there
+     */
     public function getStatusAttribute()
     {
-        return $this->id === $this->question->best_answer_id ? 'vote-accepted' : '';
+        return $this->isBest() ? 'vote-accepted' : '';
+    }
+
+    /**
+     * This function get the is best attribute
+     */
+    public function getIsBestAttribute()
+    {
+        return $this->isBest();
+    }
+
+    /**
+     * return the best answer
+     */
+    public function isBest()
+    {
+        return $this->id === $this->question->best_answers_id;
+    }
+
+    /**
+     * This function is for a polymorfic relationship
+     */
+    public function votes()
+    {
+        return $this->morphToMany(User::class, 'votable');
+    }
+
+    public function upVotes()
+    {
+        return $this->votes()->wherePivot('vote', 1);
     }
     
+    public function downVotes()
+    {
+        return $this->votes()->wherePivot('vote', -1);
+    }
 }

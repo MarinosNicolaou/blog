@@ -29,3 +29,17 @@ Route::get('/questions/{slug}', 'QuestionsController@show')->name('questions.sho
 
 //handles answers creation
 Route::resource('questions.answers', 'AnswersController')->except(['index', 'create', 'show']);
+
+//handles the acceptance of the best answer to be set by the creator of a post
+Route::post('/answers/{answer}/accept', 'AcceptAnswerController')->name('answers.accept'); 
+
+//route to favorite the question
+Route::post('/questions/{question}/favorites', 'FavoritesController@store')->name('questions.favorite');
+
+//route to delete remove the favourite question
+Route::delete('/questions/{question}/favorites', 'FavoritesController@destroy')->name('questions.unfavorite');
+
+//new route for voting question to realod the page and update the vote counts
+Route::post('/questions/{question}/vote', 'VoteQuestionController');
+// route for making voting controls work
+Route::post('/answers/{answer}/vote', 'VoteAnswerController'); 

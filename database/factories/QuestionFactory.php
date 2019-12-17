@@ -14,6 +14,6 @@ $factory->define(App\Question::class, function (Faker $faker) {
         'views' => rand(0,10),
         'answers_count' => rand(0,10),
         //An answer can have negative votes so we generate some random negative number
-        'votes' => rand(-2,10)
+        //'votes_count' => rand(-2,10)
     ];
 });
