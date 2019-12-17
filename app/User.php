@@ -41,6 +41,11 @@ class User extends Authenticatable
         return $this->hasMany(Question::class);
     }
 
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
     /**
      * URL accessor
      * return a url for the current selected question

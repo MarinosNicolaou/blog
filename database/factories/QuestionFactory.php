@@ -12,7 +12,7 @@ $factory->define(App\Question::class, function (Faker $faker) {
         //use true at the end to seperaed each paragraphs with a new line
         'body' =>$faker->paragraphs(rand(3,6), true),
         'views' => rand(0,10),
-        'answers' => rand(0,10),
+        'answers_count' => rand(0,10),
         //An answer can have negative votes so we generate some random negative number
         'votes' => rand(-2,10)
     ];
