@@ -17,22 +17,22 @@
       font-size: 2em;
     }
   
-    .vote, .comment {
+    .like, .comment {
       width: 60px;
       height: 60px;    
     }
   
     .status {
-      &.uncommented {
+      &.unposted {
         border: none;
       }
   
-      &.commented {
+      &.posted {
         border: 1px solid $green;
         color: $green;
       }
   
-      &.commented-accepted {
+      &.posted-accepted {
         background: $green;
         color: $white;
       }

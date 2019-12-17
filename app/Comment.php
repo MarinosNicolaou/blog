@@ -49,7 +49,7 @@ class Comment extends Model
 
     public function getStatusAttribute()
     {
-        return $this->id === $this->post->best_comment_id ? 'vote-accepted' : '';
+        return $this->id === $this->post->best_comment_id ? 'like-accepted' : '';
     }
     
 }

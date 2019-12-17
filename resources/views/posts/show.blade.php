@@ -22,7 +22,7 @@
                             <a title="Post is useful" class="vote-up">
                                 <i class="fas fa-thumbs-up fa-3x"></i>
                             </a>
-                            <span class="votes-count">1230</span>
+                            <span class="likes-count">1230</span>
                             <a title="Post is not useful" class="vote-down off">
                                 <i class="fas fa-thumbs-down fa-3x"></i>
                             </a>

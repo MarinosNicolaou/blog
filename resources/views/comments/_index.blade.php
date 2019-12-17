@@ -13,7 +13,7 @@
                                 <a title="Comment is useful" class="vote-up">
                                     <i class="fas fa-thumbs-up fa-3x"></i>
                                 </a>
-                                <span class="votes-count">1230</span>
+                                <span class="likes-count">1230</span>
                                 <a title="Comment is not useful" class="vote-down off">
                                     <i class="fas fa-thumbs-down fa-3x"></i>
                                 </a>

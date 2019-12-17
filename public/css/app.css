@@ -11367,22 +11367,22 @@ a.text-dark:focus {
   font-size: 2em;
 }
 
-.counters .vote,
+.counters .like,
 .counters .comment {
   width: 60px;
   height: 60px;
 }
 
-.counters .status.uncommented {
+.counters .status.unposted {
   border: none;
 }
 
-.counters .status.commented {
+.counters .status.posted {
   border: 1px solid #38c172;
   color: #38c172;
 }
 
-.counters .status.commented-accepted {
+.counters .status.posted-accepted {
   background: #38c172;
   color: #fff;
 }
