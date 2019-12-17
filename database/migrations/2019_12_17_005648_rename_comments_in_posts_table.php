@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RenameAnswersInQuestionsTable extends Migration
+class RenameCommentsInPostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class RenameAnswersInQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->renameColumn('answers', 'answers_count');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->renameColumn('comments', 'comments_count');
         });
     }
 
@@ -25,8 +25,8 @@ class RenameAnswersInQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->renameColumn('answers_count', 'answers');
+        Schema::table('posts', function (Blueprint $table) {
+            $table->renameColumn('comments_count', 'comments');
         });
     }
 }

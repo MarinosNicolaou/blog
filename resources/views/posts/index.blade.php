@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
-                        <h2>All Questions</h2>
+                        <h2>All Posts</h2>
                         <div class="ml-auto">
-                            <a href="{{ route('questions.create') }}" class="btn btn-outline-secondary">Ask Question</a>
+                            <a href="{{ route('posts.create') }}" class="btn btn-outline-secondary">Create a Post</a>
                         </div>
                     </div>
 
@@ -17,32 +17,32 @@
 
                 <div class="card-body">
                     @include ('layouts._messages')
-                   @foreach ($questions as $question)
+                   @foreach ($posts as $post)
                         <div class="media">
                             <div class="d-flex flex-column counters">
                                 <div class="vote">
-                                    <strong>{{ $question->votes }}</strong> {{ str_plural('vote', $question->votes) }}
+                                    <strong>{{ $post->votes }}</strong> {{ str_plural('vote', $post->votes) }}
                                 </div>                            
-                                <div class="status {{ $question->status }}">
-                                    <strong>{{ $question->answers_count }}</strong> {{ str_plural('answer', $question->answers_count) }}
+                                <div class="status {{ $post->status }}">
+                                    <strong>{{ $post->comments_count }}</strong> {{ str_plural('comment', $post->comments_count) }}
                                 </div>                            
                                 <div class="view">
-                                    {{ $question->views . " " . str_plural('view', $question->views) }}
+                                    {{ $post->views . " " . str_plural('view', $post->views) }}
                                 </div>                            
                             </div>
 
                             <div class="media-body">
                                 <div class="d-flex align-items-center">
                                     <h3 class="mt-0">
-                                        <a href="{{ $question->url }}">{{ $question->title }}
+                                        <a href="{{ $post->url }}">{{ $post->title }}
                                     </h3>
                                     <div class="ml-auto">
-                                        @if(Auth::check() && Auth::user()->can('update-question', $question))
-                                            <a href="{{ route('questions.edit', $question->id) }}" class="btn btn-sm btn-outline-info">Edit</a>
+                                        @if(Auth::check() && Auth::user()->can('update-post', $post))
+                                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-outline-info">Edit</a>
                                         @endif
 
-                                        @if(Auth::check() && Auth::user()->can('delete-question', $question))
-                                        <form class="form-delete" method="post" action="{{ route('questions.destroy', $question-> id)}}">
+                                        @if(Auth::check() && Auth::user()->can('delete-post', $post))
+                                        <form class="form-delete" method="post" action="{{ route('posts.destroy', $post-> id)}}">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete it')">Delete</button>
@@ -52,18 +52,18 @@
                                 </div>
 
                                 <p class="lead">
-                                    Asked by
-                                    <a href="{{ $question->user->url }}">{{ $question->user->name }}</a> 
-                                    <small class="text-muted">{{ $question->created_date }}</small>
+                                    Posted by
+                                    <a href="{{ $post->user->url }}">{{ $post->user->name }}</a> 
+                                    <small class="text-muted">{{ $post->created_date }}</small>
                                 </p>
-                                {{ str_limit($question->body, 250) }}
+                                {{ str_limit($post->body, 250) }}
                             </div>                        
                         </div>
                         <hr>
                    @endforeach
 
                     <div class="mx-auto">
-                        {{ $questions->links() }}
+                        {{ $posts->links() }}
                     </div>
                 </div>
             </div>

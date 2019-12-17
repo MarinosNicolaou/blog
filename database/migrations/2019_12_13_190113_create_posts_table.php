@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQuestionsTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
              //Slug is basicallt the title and basically it is to constructed and make pretty URL
@@ -22,12 +22,12 @@ class CreateQuestionsTable extends Migration
              //How many times the post has been viewed and it is 
              //unsignedInteger because after creation nobady has view it yet
              $table->unsignedInteger('views')->default(0);
-             //How many answers and it the same with views
-             $table->unsignedInteger('answers')->default(0);
-             //votes are integer because the can be negative
-             $table->integer('votes')->default(0);
-             //The creator of the post can choose an anwser to be the best or not
-             $table->unsignedInteger('best_answers_id')->nullable();
+             //How many comments and it the same with views
+             $table->unsignedInteger('comments')->default(0);
+             //likes are integer because the can be negative
+             $table->integer('likes')->default(0);
+             //The creator of the post can choose a comment to be the best or not
+             $table->unsignedInteger('best_comment_id')->nullable();
              $table->unsignedBigInteger('user_id');
              $table->timestamps();
  
@@ -43,6 +43,6 @@ class CreateQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('posts');
     }
 }

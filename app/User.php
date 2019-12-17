@@ -37,22 +37,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function questions(){
-        return $this->hasMany(Question::class);
+    public function posts(){
+        return $this->hasMany(Post::class);
     }
 
-    public function answers()
+    public function comments()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Comment::class);
     }
 
     /**
      * URL accessor
-     * return a url for the current selected question
+     * return a url for the current selected comment
      */
     public function getUrlAttribute()
     {
-        //return route("questions.show", $this->id);
+        //return route("comments.show", $this->id);
         return '#';
     }
 

@@ -3,10 +3,10 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    <h3>Your Answer type here</h3>
+                    <h3>Your Comment type here</h3>
                 </div>
                 <hr>
-                <form action="{{ route('questions.answers.store', $question->id) }}" method="post">
+                <form action="{{ route('posts.comments.store', $post->id) }}" method="post">
                     @csrf
                     <div class="form-group">
                         <textarea class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}" rows="7" name="body"></textarea>

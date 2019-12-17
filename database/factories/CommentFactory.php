@@ -5,11 +5,11 @@
 use App\Model;
 use Faker\Generator as Faker;
 
-$factory->define(App\Answer::class, function (Faker $faker) {
+$factory->define(App\Comment::class, function (Faker $faker) {
     return [
         'body' => $faker->paragraphs(rand(2, 5), true),
-        //random user for diff answers 
+        //random user for diff comments 
         'user_id' =>  App\User::pluck('id')->random(),
-        'votes_count' => rand(0, 5),
+        'likes_count' => rand(0, 5),
     ];
 });

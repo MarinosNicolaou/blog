@@ -23,9 +23,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('questions', 'QuestionsController')->except('show');
+Route::resource('posts', 'PostsController')->except('show');
 
-Route::get('/questions/{slug}', 'QuestionsController@show')->name('questions.show');
+Route::get('/posts/{slug}', 'PostsController@show')->name('posts.show');
 
-//handles answers creation
-Route::resource('questions.answers', 'AnswersController')->except(['index', 'create', 'show']);
+//handles comments creation
+Route::resource('posts.comments', 'CommentsController')->except(['index', 'create', 'show']);

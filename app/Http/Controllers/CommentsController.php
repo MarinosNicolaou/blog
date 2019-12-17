@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Answer;
+use App\Comment;
 use Illuminate\Http\Request;
 use App\Question;
 
 
-class AnswersController extends Controller
+class CommentsController extends Controller
 {
 
     /**
@@ -18,23 +18,23 @@ class AnswersController extends Controller
      */
     public function store(Question $question, Request $request)
     {
-        $question->answers()->create( $request->validate ([
+        $question->comments()->create( $request->validate ([
             'body' => 'required'
         ]) + ['user_id' => \Auth::id()]);
-        return back()->with('success', "Answer has been submitted ");
+        return back()->with('success', "Comment submitted ");
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Answer  $answer
+     * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question,  Answer $answer)
+    public function edit(Post $post,  Comment $comment)
     {
-        $this->authorize('update', $answer);
+        $this->authorize('update', $comment);
 
-        return view('answers.edit', compact('question', 'answer'));
+        return view('comments.edit', compact('post', 'comment'));
 
     }
 

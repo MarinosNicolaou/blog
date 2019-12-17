@@ -17,22 +17,22 @@
       font-size: 2em;
     }
   
-    .vote, .answer {
+    .vote, .comment {
       width: 60px;
       height: 60px;    
     }
   
     .status {
-      &.unanswered {
+      &.uncommented {
         border: none;
       }
   
-      &.answered {
+      &.commented {
         border: 1px solid $green;
         color: $green;
       }
   
-      &.answered-accepted {
+      &.commented-accepted {
         background: $green;
         color: $white;
       }

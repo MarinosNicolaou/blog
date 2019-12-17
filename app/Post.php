@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str; 
 
-class Question extends Model
+class Post extends Model
 {
     protected $fillable = ['title', 'body'];
 
@@ -13,9 +13,9 @@ class Question extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function answers()
+    public function comments()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Comment::class);
     }
 
     /**
@@ -29,33 +29,33 @@ class Question extends Model
 
     /**
      * URL accessor
-     * return a url for the current selected question
+     * return a url for the current selected post
      */
     public function getUrlAttribute()
     {
-        return route("questions.show", $this->slug);
+        return route("posts.show", $this->slug);
     }
 
     /**
      * This to created date of creation
-     * fot a question
+     * fot a post
      */
     public function getCreatedDateAttribute(){
         return $this->created_at->format("d/m/Y");
     }
 
     /**
-     * check the status of eaach question
+     * check the status of eaach post
      */
     public function getStatusAttribute()
     {
-        if ($this->answers_count > 0) {
-            if ($this->best_answer_id) {
-                return "answered-accepted";
+        if ($this->posts_count > 0) {
+            if ($this->best_post_id) {
+                return "posted-accepted";
             }
-            return "answered";
+            return "posted";
         }
-        return "unanswered";
+        return "unposted";
     }
 
     public function getBodyHtmlAttribute()

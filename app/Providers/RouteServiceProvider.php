@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use App\Question;
+use App\Post;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -32,7 +32,7 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::bind('slug', function($slug) {
-            return Question::with('answers.user')->where('slug', $slug)->first() ?? abort(404);
+            return Post::with('comments.user')->where('slug', $slug)->first() ?? abort(404);
         });
 
         parent::boot();

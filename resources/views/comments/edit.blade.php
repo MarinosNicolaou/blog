@@ -7,14 +7,14 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">
-                        <h1>Editing answer for: <strong>{{ $question->title }}</strong></h1>
+                        <h1>Editing comment for: <strong>{{ $post->title }}</strong></h1>
                     </div>
                     <hr>
-                    <form action="{{ route('questions.answers.update', [$question->id, $answer->id]) }}" method="post">
+                    <form action="{{ route('posts.comments.update', [$post->id, $comment->id]) }}" method="post">
                         @csrf
                         @method('PATCH')
                         <div class="form-group">
-                            <textarea class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}" rows="7" name="body">{{ old('body', $answer->body) }}</textarea>
+                            <textarea class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}" rows="7" name="body">{{ old('body', $comment->body) }}</textarea>
                             @if ($errors->has('body'))
                                 <div class="invalid-feedback">
                                     <strong>{{ $errors->first('body') }}</strong>
