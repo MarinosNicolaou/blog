@@ -11368,21 +11368,21 @@ a.text-dark:focus {
 }
 
 .counters .vote,
-.counters .answer {
+.counters .comment {
   width: 60px;
   height: 60px;
 }
 
-.counters .status.unanswered {
+.counters .status.uncommented {
   border: none;
 }
 
-.counters .status.answered {
+.counters .status.commented {
   border: 1px solid #38c172;
   color: #38c172;
 }
 
-.counters .status.answered-accepted {
+.counters .status.commented-accepted {
   background: #38c172;
   color: #fff;
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use Illuminate\Http\Request;
-use App\Question;
+use App\Post;
 
 
 class CommentsController extends Controller
@@ -16,9 +16,9 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Question $question, Request $request)
+    public function store(Post $post, Request $request)
     {
-        $question->comments()->create( $request->validate ([
+        $post->comments()->create( $request->validate ([
             'body' => 'required'
         ]) + ['user_id' => \Auth::id()]);
         return back()->with('success', "Comment submitted ");
@@ -42,31 +42,31 @@ class CommentsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Answer  $answer
+     * @param  \App\Comment  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question, Answer $answer)
+    public function update(Request $request, Post $post, Comment $comment)
     {
-        $this->authorize('update', $answer);
+        $this->authorize('update', $comment);
 
-        $answer->update($request->validate([
+        $comment->update($request->validate([
             'body' => 'required',
         ]));
 
 
-        return redirect()->route('questions.show', $question->slug)->with('success', 'Answer updated');
+        return redirect()->route('posts.show', $post->slug)->with('success', 'Comment updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Answer  $answer
+     * @param  \App\Comment  $answer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question, Answer $answer)
+    public function destroy(Post $post, Comment $comment)
     {
-        $this->authorize('delete', $answer);
-        $answer->delete();
-        return back()->with('success', "Answer removed");
+        $this->authorize('delete', $comment);
+        $comment->delete();
+        return back()->with('success', "Comment removed");
     }
 }

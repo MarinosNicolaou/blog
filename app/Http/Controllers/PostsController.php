@@ -31,7 +31,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        $question = new Post();
+        $post = new Post();
         return view('posts.create', compact('post'));
     }
 
