@@ -17,7 +17,7 @@
                                 <a title="Comment is not useful" class="vote-down off">
                                     <i class="fas fa-thumbs-down fa-3x"></i>
                                 </a>
-                                <a title="Commet is the best" class="{{ $comment->status }} mt-2">
+                                <a title="Comment is the best" class="{{ $comment->status }} mt-2">
                                     <i class="fas fa-check fa-2x"></i>                                    
                                 </a>
                             </div>
