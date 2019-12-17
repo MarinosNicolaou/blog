@@ -20,8 +20,13 @@
                    @foreach ($posts as $post)
                         <div class="media">
                             <div class="d-flex flex-column counters">
+<<<<<<< HEAD:resources/views/posts/index.blade.php
                                 <div class="like">
                                     <strong>{{ $post->likes }}</strong> {{ str_plural('like', $post->likes) }}
+=======
+                                <div class="vote">
+                                    <strong>{{ $question->votes_count }}</strong> {{ str_plural('vote', $question->votes_count) }}
+>>>>>>> v16:resources/views/questions/index.blade.php
                                 </div>                            
                                 <div class="status {{ $post->status }}">
                                     <strong>{{ $post->comments_count }}</strong> {{ str_plural('comment', $post->comments_count) }}

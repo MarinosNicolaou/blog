@@ -19,6 +19,7 @@
 
                     <div class="media">
                         <div class="d-fex flex-column vote-controls">
+<<<<<<< HEAD:resources/views/posts/show.blade.php
                             <a title="Post is useful" class="vote-up">
                                 <i class="fas fa-thumbs-up fa-3x"></i>
                             </a>
@@ -27,9 +28,44 @@
                                 <i class="fas fa-thumbs-down fa-3x"></i>
                             </a>
                             <a title="Mark as favorite post (Click again to undo)" class="favorite mt-2 favorited">
-                                <i class="fas fa-heart fa-2x"></i>
-                                <span class="favorites-count">123</span>
+=======
+                            <a title="Question is useful" class="vote-up {{ Auth::guest() ? 'off' : '' }}"
+                            onclick="event.preventDefault(); document.getElementById('up-vote-question-{{ $question->id }}').submit();">
+                                
+                                <i class="fas fa-thumbs-up fa-3x"></i>
                             </a>
+
+                            <form id="up-vote-question-{{ $question->id }}" action="/questions/{{ $question->id }}/vote" method="POST" style="display:none;">
+                                @csrf
+                                <input type="hidden" name="vote" value="1">
+                            </form>
+
+                            <span class="votes-count">{{ $question->votes_count }}</span>
+                            <a title="Question is not useful" class="vote-down {{ Auth::guest() ? 'off' : '' }}"
+                            onclick="event.preventDefault(); document.getElementById('down-vote-question-{{ $question->id }}').submit();"
+                            >
+                                <i class="fas fa-thumbs-down fa-3x"></i>
+                            </a>
+
+                            <form id="down-vote-question-{{ $question->id }}" action="/questions/{{ $question->id }}/vote" method="POST" style="display:none;">
+                                @csrf
+                                <input type="hidden" name="vote" value="-1">
+                            </form>
+
+                            <a title="Click to mark as favorite question (Click again to undo)" 
+                                class="favorite mt-2 {{ Auth::guest() ? 'off' : ($question->is_favorited ? 'favorited' : '') }}"
+                                onclick="event.preventDefault(); document.getElementById('favorite-question-{{ $question->id }}').submit();"
+                                >
+>>>>>>> v16:resources/views/questions/show.blade.php
+                                <i class="fas fa-heart fa-2x"></i>
+                                <span class="favorites-count">{{ $question->favorites_count }}</span>
+                            </a>
+                            <form id="favorite-question-{{ $question->id }}" action="/questions/{{ $question->id }}/favorites" method="POST" style="display:none;">
+                                @csrf
+                                @if ($question->is_favorited)
+                                    @method ('DELETE')
+                                @endif
+                            </form>
                         </div>
                         <div class="media-body">
                             {!! $post->body_html !!}
