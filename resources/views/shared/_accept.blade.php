@@ -1,5 +1,5 @@
 @can ('accept', $model)
-    <a title="Mark this answer as best answer" 
+    <a title="Mark this as the best comment" 
         class="{{ $model->status }} mt-2"
         onclick="event.preventDefault(); document.getElementById('accept-answer-{{ $model->id }}').submit();"
         >
@@ -10,7 +10,7 @@
     </form>
 @else
     @if ($model->is_best)
-        <a title="The question owner accepted this answer as best answer" 
+        <a title="The creator of the post has marked this comment as the best one" 
             class="{{ $model->status }} mt-2"                                        
             >
             <i class="fas fa-check fa-2x"></i>                                    

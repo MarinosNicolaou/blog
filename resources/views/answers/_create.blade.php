@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title">
-                    <h3>Your Answer type here</h3>
+                    <h3>Enter your comment here</h3>
                 </div>
                 <hr>
                 <form action="{{ route('questions.answers.store', $question->id) }}" method="post">

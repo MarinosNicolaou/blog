@@ -7,9 +7,9 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
-                        <h2>All Questions</h2>
+                        <h2>Posts</h2>
                         <div class="ml-auto">
-                            <a href="{{ route('questions.create') }}" class="btn btn-outline-secondary">Ask Question</a>
+                            <a href="{{ route('questions.create') }}" class="btn btn-outline-secondary">Create a Post</a>
                         </div>
                     </div>
 
@@ -45,14 +45,14 @@
                                         <form class="form-delete" method="post" action="{{ route('questions.destroy', $question-> id)}}">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete it')">Delete</button>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('You want to delete it')">Delete</button>
                                         </form>
                                         @endif
                                     </div>
                                 </div>
 
                                 <p class="lead">
-                                    Asked by
+                                    Posted by
                                     <a href="{{ $question->user->url }}">{{ $question->user->name }}</a> 
                                     <small class="text-muted">{{ $question->created_date }}</small>
                                 </p>

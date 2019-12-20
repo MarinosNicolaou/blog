@@ -27,7 +27,7 @@
             </div>
         </div>
         <p class="lead">
-            Asked by 
+            Posted by 
             <a href="{{ $question->user->url }}">{{ $question->user->name }}</a> 
             <small class="text-muted">{{ $question->created_date }}</small>
         </p>

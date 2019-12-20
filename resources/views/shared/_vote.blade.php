@@ -15,7 +15,7 @@
     $formAction = "/{$firstURISegment}/{$model->id}/vote";
 @endphp
 <div class="d-fex flex-column vote-controls">
-    <a title="This {{ $name }} is useful" 
+    <a title="This {{ $name }} is good" 
         class="vote-up {{ Auth::guest() ? 'off' : '' }}"
         onclick="event.preventDefault(); document.getElementById('up-vote-{{ $formId }}').submit();"
         >
@@ -28,7 +28,7 @@
 
     <span class="votes-count">{{ $model->votes_count }}</span>
 
-    <a title="This {{ $name }} is not useful" 
+    <a title="This {{ $name }} is not worth it" 
         class="vote-down {{ Auth::guest() ? 'off' : '' }}"
         onclick="event.preventDefault(); document.getElementById('down-vote-{{ $formId }}').submit();"
         >
