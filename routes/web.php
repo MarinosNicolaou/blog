@@ -26,7 +26,7 @@ Route::resource('questions', 'QuestionsController')->except('show');
 Route::get('/questions/{slug}', 'QuestionsController@show')->name('questions.show');
 
 //handles answers creation
-Route::resource('questions.answers', 'AnswersController')->except(['index', 'create', 'show']);
+Route::resource('questions.answers', 'AnswersController')->except(['create', 'show']);
 
 //handles the acceptance of the best answer to be set by the creator of a post
 Route::post('/answers/{answer}/accept', 'AcceptAnswerController')->name('answers.accept'); 

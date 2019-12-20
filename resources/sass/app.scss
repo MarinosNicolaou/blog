@@ -85,3 +85,7 @@
   .vote-controls a.vote-accepted {
     color: #28a745;
   }
+
+  [v-cloak] {
+    display: none;
+  }

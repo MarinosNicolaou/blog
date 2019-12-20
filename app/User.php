@@ -105,7 +105,7 @@ class User extends Authenticatable
     {
         $voteQuestions = $this->voteQuestions();
         //call the functinon vote to recount and update
-        $this->_vote($voteQuestions, $question, $vote);
+        return $this->_vote($voteQuestions, $question, $vote);
     }
 
     /**
@@ -117,7 +117,7 @@ class User extends Authenticatable
     {
         $voteAnswers = $this->voteAnswers();
         //call the functinon vote to recount and update
-        $this->_vote($voteAnswers, $answer, $vote);
+        return $this->_vote($voteAnswers, $answer, $vote);
     }    
 
     private function _vote ($relationship, $model, $vote)
@@ -139,5 +139,8 @@ class User extends Authenticatable
         $model->votes_count = $upVotes + $downVotes;
         //save to the database and uplaod
         $model->save();
+
+        return $model->votes_count;
+
     }
 }
